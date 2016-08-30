@@ -98,11 +98,13 @@ class GridFieldManageBulkRelationships
 			'AddLink' 				=> $gridField->Link('addtorelationship-' . $this->relationship),
 			'RemoveLink' 			=> $gridField->Link('removefromrelationship-' . $this->relationship),
 			'ButtonName' 			=> $this->buttonName,
-			'ObjectSelectorField'	=> ObjectSelectorField::create('relation_selector', null)->setCustomLink(true)->setSourceObject($sourceObject)->Field(),
+			'ObjectSelectorField'	=> $Selector = ObjectSelectorField::create('relation_selector', null)->setCustomLink(true)->setSourceObject($sourceObject)->Field(),
 			'FromClass'				=> $this->fromClass,
 			'Relationship'			=> $this->relationship,
 			'Title'					=> $this->title
 		));
+
+		
 		return array(
 			$this->targetFragment => $data->renderWith('GridFieldManageBulkRelationships'),
 		);

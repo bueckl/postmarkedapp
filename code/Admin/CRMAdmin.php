@@ -10,12 +10,12 @@
 class CRMAdmin extends ModelAdmin {
 
 	private static $url_segment = 'crm';
-	private static $menu_title = 'CRM';
+	private static $menu_title = 'Tiny CRM Tool';
 	private static $menu_icon = 'silverstripe-postmarked/images/icons/crm.png';
 
 	private static $managed_models = array(
-		'CustomerTag',
-		'CustomerStatus'
+		'CustomerTag'
+		// 'CustomerStatus'
 	);
 
 	public function init(){
@@ -32,20 +32,24 @@ class CRMAdmin extends ModelAdmin {
 		if($this->modelClass == Config::inst()->get('PostmarkAdmin', 'member_class')){
 			$fields = $form->Fields();
 			$grid = $fields->dataFieldByName($this->sanitiseClassName($this->modelClass));
+
 			if($grid){
 
 				$configs = $grid->getConfig();
-
+				$configs->removeComponentsByType('GridFieldAddNewButton');
+				
+				$configs->addComponent(new GridFieldSelectRecord(), 'GridFieldDataColumns');
 				$configs->addComponent(new GridFieldPostmarkMessageButton());
 				$configs->addComponent(new GridFieldCustomerReadEmailsButton());
-				$configs->addComponent($tags = new GridFieldManageBulkRelationships('before'), 'GridFieldAddNewButton');
-				$tags->setFromClass($this->modelClass)->setRelationship('Tags')->setTitle(_t('CRMAdmin.Tags', 'Tags'));
+				$configs->addComponent($tags = new GridFieldManageBulkRelationships());
+				$tags->setFromClass($this->modelClass)->setRelationship('Tags')->setTitle(_t('CRMAdmin.Tags', 'Assign Tags'));
+				
+				
+				$configs->addComponent(new GridFieldAddNewButton('toolbar-header-left'));
 
-				$configs->addComponent(new GridFieldSelectRecord(), 'GridFieldDataColumns');
 
-
-				$configs->addComponent($status = new GridFieldManageBulkRelationships('before'), 'GridFieldAddNewButton');
-				$status->setFromClass($this->modelClass)->setRelationship('Statuses')->setTitle(_t('CRMAdmin.Status', 'Status'));
+				//$configs->addComponent($status = new GridFieldManageBulkRelationships('before'), 'GridFieldAddNewButton');
+				// $status->setFromClass($this->modelClass)->setRelationship('Statuses')->setTitle(_t('CRMAdmin.Status', 'Status'));
 
 				$columns = $configs->getComponentByType('GridFieldDataColumns');
 
@@ -54,9 +58,11 @@ class CRMAdmin extends ModelAdmin {
 					'getFullName'			=> _t('CRMAdmin.Name', 'Name'),
 					'Email'					=> _t('CRMAdmin.Email', 'Email'),
 					'Company'				=> _t('CRMAdmin.Company', 'Company'),
-					'getTagCollection'		=> _t('CRMAdmin.Tags', 'Tags'),
-					'getStatusCollection'	=> _t('CRMAdmin.Status', 'Status'),
-					'getUnreadMessages'		=> _t('CRMAdmin.UnreadMessages', 'Unread messages')
+					'getTagCollection'		=> 'Assigned Tags',
+					// 'getStatusCollection'	=> _t('CRMAdmin.Status', 'Status'),
+					'getUnreadMessages'		=> _t('CRMAdmin.UnreadMessages', 'Unread messages'),
+					'getTotalMessages'		=> _t('CRMAdmin.TotalMessages', 'Total messages')
+					
 				);
 
 
@@ -69,7 +75,7 @@ class CRMAdmin extends ModelAdmin {
 
 				$addButton = $configs->getComponentByType('GridFieldAddNewButton');
 				if($addButton){
-					$addButton->setButtonName(_t('CRMAdmin.AddCustomerButton', 'Add Customer'));
+					$addButton->setButtonName(_t('CRMAdmin.AddCustomerButton', 'Add Contact'));
 				}
 
 

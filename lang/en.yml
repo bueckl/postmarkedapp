@@ -1,11 +1,11 @@
 en:
   CRMAdmin:
-    AddCustomerButton: 'Add Client'
-    Tags: 'Tags'
+    AddCustomerButton: 'Add Contact'
+    Tags: 'Assign Tags'
     Status: 'Status'
-    StartTyping: 'Start typing to select items'
-    Add: 'Add'
-    Remove: 'Remove'
+    StartTyping: 'Start typing to select a tag and select those contacts you want the tag to be applied to.'
+    Add: 'Add tag(s)'
+    Remove: 'Remove tag(s)'
     Name: 'Name'
     Email: 'Email'
     Company: 'Company'

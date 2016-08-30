@@ -41,7 +41,7 @@
   border-bottom-color: #fff;
 }
 .tab-title.Tags {
-  width: 30px;
+  width: auto;
 }
 .tab-title.Statuses {
   left: 55px;

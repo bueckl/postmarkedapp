@@ -15,7 +15,7 @@ table.ss-gridfield-table tbody td button.gird-field-message,
 .btn-icon-envelope,
 .ui-state-default .ui-icon.btn-icon-envelope,
 .cms table.ss-gridfield-table tbody td a.read-more-link {
-  width: 16px!important;
+  width: 16px;
 }
 .cms table.ss-gridfield-table tbody td a.read-more-link:before {
   width: 16px;

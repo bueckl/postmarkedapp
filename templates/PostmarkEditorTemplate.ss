@@ -26,7 +26,7 @@
                             <img src="silverstripe-postmarked/images/icons/user.png">
                         </div>
                         <div class="message-details <% if $getFromTitle || $getFromEmail %>has-sender<% end_if %><% if $Last %> ex<% end_if %>">
-                            <p class="message-from">{$getFromTitle} {$getFromEmail}</p>
+                            <p class="message-from">FROM: {$getFromTitle} {$getFromEmail}</p>
                             <% if $First %>
                                 <h3>{$Subject}</h3>
                             <% else %>

@@ -8,7 +8,10 @@
  */
 
 class CustomerExtension extends DataExtension {
-
+	
+	private static $db = array(
+		'Confirmed' => 'Boolean'
+	);
 	private static $many_many = array(
 		'Tags'			=> 'CustomerTag',
 		'Statuses'		=> 'CustomerStatus'
@@ -20,7 +23,10 @@ class CustomerExtension extends DataExtension {
 		'getStatusCollection'	=> 'Varchar',
 		'getNotifications'		=> 'Int'
 	);
-
+	
+	public function updateCMSFields(FieldList $fields) {
+		$fields->push(new CheckboxField('Confirmed'));
+	}
 	public function getFullName(){
 		return $this->owner->FirstName . ' ' . $this->owner->Surname;
 	}
@@ -45,6 +51,13 @@ class CustomerExtension extends DataExtension {
 		$list = PostmarkMessage::get()->filter(array(
 			'FromCustomerID'		=> $this->owner->ID,
 			'Read'					=> 0
+		));
+		return $list->count();
+	}
+
+	public function getTotalMessages(){
+		$list = PostmarkMessage::get()->filter(array(
+			'FromCustomerID'		=> $this->owner->ID
 		));
 		return $list->count();
 	}

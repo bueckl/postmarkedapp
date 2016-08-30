@@ -1,9 +1,10 @@
 <div class="grid-field-bulk-operation tabbed-block" data-fromclass="$FromClass" data-relationship="{$Relationship}">
 
-    <label class="tab-title {$Relationship}" data-tab="tab-{$Relationship}">{$Title}</label>
+    <!-- <label class="tab-title {$Relationship}" data-tab="tab-{$Relationship}">Assign tag to contact/customer</label> -->
 
 		<div id="tab-{$Relationship}" class="tab-content">
-            <p><%t CRMAdmin.StartTyping "Start typing to select items" %>:</p>
+			<h2>$Title</h2>
+            <p><%t CRMAdmin.StartTyping "Start typing to select a tag" %> To manage your Tags, please click the "Customer Tag" Tab!</p>
     		{$ObjectSelectorField}
 
 			<div class="tab-buttons">
