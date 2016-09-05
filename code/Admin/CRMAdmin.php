@@ -57,7 +57,7 @@ class CRMAdmin extends ModelAdmin {
 				$arrColumns = array(
 					'getFullName'			=> _t('CRMAdmin.Name', 'Name'),
 					'Email'					=> _t('CRMAdmin.Email', 'Email'),
-					'Company'				=> _t('CRMAdmin.Company', 'Company'),
+					'Company.CompanyName'				=> _t('CRMAdmin.Company', 'Company'),
 					'getTagCollection'		=> 'Assigned Tags',
 					// 'getStatusCollection'	=> _t('CRMAdmin.Status', 'Status'),
 					'getUnreadMessages'		=> _t('CRMAdmin.UnreadMessages', 'Unread messages'),
