@@ -166,8 +166,7 @@ class PostmarkAdmin extends ModelAdmin {
 
 
 			$this->extend('updatePostmessage', $email, $data);
-
-
+			$email->setTemplate('NewsletterTemplate');
 			$email->send();
 		}
 
