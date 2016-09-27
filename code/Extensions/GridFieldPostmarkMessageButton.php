@@ -68,7 +68,7 @@ class GridFieldPostmarkMessageButton implements GridField_ColumnProvider, GridFi
 
 		}
 		elseif($actionName == 'postmessage'){
-
+			
 		}
 	}
 

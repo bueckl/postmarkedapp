@@ -63,7 +63,7 @@ class PostmarkMailer extends Mailer {
 		$client = new PostmarkClient(SiteConfig::current_site_config()->PostmarkToken);
 
 		$customerIDs = PostmarkHelper::client_list()->filter('Email', explode(',', $to))->column('ID');
-
+		
 		$message = null;
 		if(is_array($customerIDs) && !empty($customerIDs) && self::$record_emails){
 			$message = new PostmarkMessage(array(

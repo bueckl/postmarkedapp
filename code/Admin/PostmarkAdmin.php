@@ -140,13 +140,16 @@ class PostmarkAdmin extends ModelAdmin {
 	}
 
 	public function postmessage($data, $form){
-
+		
 		$signature = PostmarkSignature::get()->byID($data['FromID']);
 		PostmarkMailer::RecordEmails(true);
 		PostmarkMailer::ReplyToMessageID($data['InReplyToID']);
 
 		$clients = PostmarkHelper::client_list()->filter('ID', $data['ToMemberID']);
+		
 		foreach($clients as $client){
+			
+			
 			$email = new Email(
 				$signature->Email,
 				$client->Email,
@@ -163,7 +166,6 @@ class PostmarkAdmin extends ModelAdmin {
 					}
 				}
 			}
-
 
 			$this->extend('updatePostmessage', $email, $data);
 			$email->setTemplate('NewsletterTemplate');
