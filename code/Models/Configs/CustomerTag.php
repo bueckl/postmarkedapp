@@ -27,21 +27,30 @@ class CustomerTag extends DataObject {
 		
 		parent::validate();
 		
-		$exists = CustomerTag::get()->filter('Title', $this->Title)->Count();
-
-		if ($this->Title == "") {
-				$message = 'A tag must not be empty';
-				return new ValidationResult(false, $message);
+		if (!$this->ID) {
+			
+			
+			$exists = CustomerTag::get()->filter('Title', $this->Title)->Count();
+			
+		
+			if ($exists == 1) {
+					$message = 'A tag by this name already exists';
+					return new ValidationResult(false, $message);
+			}
+		
+			else if ($exists == 0) {
+				$message = 'A new tag "'.$this->Title.'" has been added';
+				return new ValidationResult(true, $message);
+			}
+		} else {
+			if ($this->Title == "") {
+					$message = 'A tag must not be empty';
+					return new ValidationResult(false, $message);
+			}
+			
+			return parent::validate();
+			
 		}
 		
-		if ($exists == 1) {
-				$message = 'A tag by this name already exists';
-				return new ValidationResult(false, $message);
-		}
-		
-		else if ($exists == 0) {
-			$message = 'A new tag "'.$this->Title.'" has been added';
-			return new ValidationResult(true, $message);
-		}
 	}
 } 
