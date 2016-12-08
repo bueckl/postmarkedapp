@@ -22,6 +22,10 @@ class CustomerTag extends DataObject {
 		'Title'
 	);
 	
+	private static $belongs_many_many = array(
+		'Recipients' => 'Recipient.Tags' 
+	);
+	
 	// Make sure not to have empty tags or doublettes
 	protected function validate() {
 		
@@ -53,4 +57,5 @@ class CustomerTag extends DataObject {
 		}
 		
 	}
+	
 } 

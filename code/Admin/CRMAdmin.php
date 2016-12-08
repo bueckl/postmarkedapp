@@ -17,7 +17,9 @@ class CRMAdmin extends ModelAdmin {
 		'CustomerTag'
 		// 'CustomerStatus'
 	);
-
+	
+	public $showImportForm = false;
+	
 	public function init(){
 		parent::init();
 		Requirements::css(POSTMARK_RELATIVE_PATH . '/css/icons.css');
@@ -57,9 +59,7 @@ class CRMAdmin extends ModelAdmin {
 				$arrColumns = array(
 					'getFullName'			=> _t('CRMAdmin.Name', 'Name'),
 					'Email'					=> _t('CRMAdmin.Email', 'Email'),
-					// 'Company.CompanyName'				=> _t('CRMAdmin.Company', 'Company'),
 					'getTagCollection'		=> 'Assigned Tags',
-					// 'getStatusCollection'	=> _t('CRMAdmin.Status', 'Status'),
 					'getUnreadMessages'		=> _t('CRMAdmin.UnreadMessages', 'Unread messages'),
 					'getTotalMessages'		=> _t('CRMAdmin.TotalMessages', 'Total messages'),
 					'Company.CompanyName'	=> _t('CRMAdmin.Company', 'Company'),
@@ -88,7 +88,10 @@ class CRMAdmin extends ModelAdmin {
 		return $form;
 
 	}
+	
 
+
+	
 	// public function getSearchContext(){
 	// 	$customerClass = Config::inst()->get('PostmarkAdmin', 'member_class');
 	// 	if($this->modelClass == $customerClass){
