@@ -10,7 +10,7 @@
 class CRMAdmin extends ModelAdmin {
 
 	private static $url_segment = 'crm';
-	private static $menu_title = 'Tiny CRM Tool';
+	private static $menu_title = 'User Admin';
 	private static $menu_icon = 'silverstripe-postmarked/images/icons/crm.png';
 
 	private static $managed_models = array(
@@ -29,7 +29,7 @@ class CRMAdmin extends ModelAdmin {
 
 		$form = parent::getEditForm($id, $fields);
 
-		Requirements::javascript('silverstripe-postmarked/javascript/PostmarkMessageButton.js');
+		//Requirements::javascript('silverstripe-postmarked/javascript/PostmarkMessageButton.js');
 
 		if($this->modelClass == Config::inst()->get('PostmarkAdmin', 'member_class')){
 			$fields = $form->Fields();
@@ -41,8 +41,8 @@ class CRMAdmin extends ModelAdmin {
 				$configs->removeComponentsByType('GridFieldAddNewButton');
 				
 				$configs->addComponent(new GridFieldSelectRecord(), 'GridFieldDataColumns');
-				$configs->addComponent(new GridFieldPostmarkMessageButton());
-				$configs->addComponent(new GridFieldCustomerReadEmailsButton());
+				//$configs->addComponent(new GridFieldPostmarkMessageButton());
+				//$configs->addComponent(new GridFieldCustomerReadEmailsButton());
 				$configs->addComponent($tags = new GridFieldManageBulkRelationships());
 				$tags->setFromClass($this->modelClass)->setRelationship('Tags')->setTitle(_t('CRMAdmin.Tags', 'Assign Tags'));
 				
@@ -60,8 +60,8 @@ class CRMAdmin extends ModelAdmin {
 					'getFullName'			=> _t('CRMAdmin.Name', 'Name'),
 					'Email'					=> _t('CRMAdmin.Email', 'Email'),
 					'getTagCollection'		=> 'Assigned Tags',
-					'getUnreadMessages'		=> _t('CRMAdmin.UnreadMessages', 'Unread messages'),
-					'getTotalMessages'		=> _t('CRMAdmin.TotalMessages', 'Total messages'),
+                    // 'getUnreadMessages'        => _t('CRMAdmin.UnreadMessages', 'Unread messages'),
+                    // 'getTotalMessages'        => _t('CRMAdmin.TotalMessages', 'Total messages'),
 					'Company.CompanyName'	=> _t('CRMAdmin.Company', 'Company'),
 					
 				);
