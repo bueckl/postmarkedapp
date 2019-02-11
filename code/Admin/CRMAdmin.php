@@ -48,6 +48,10 @@ class CRMAdmin extends ModelAdmin {
 				
 				
 				$configs->addComponent(new GridFieldAddNewButton('toolbar-header-left'));
+                
+                if (class_exists('GridLoginAction')) {
+                    $configs->addComponent(new GridLoginAction('buttons-before-left'));
+                }
 
 
 				//$configs->addComponent($status = new GridFieldManageBulkRelationships('before'), 'GridFieldAddNewButton');
