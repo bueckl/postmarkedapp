@@ -38,6 +38,41 @@ class CRMAdmin extends ModelAdmin {
 			if($grid){
 
 				$configs = $grid->getConfig();
+
+
+				$importer = new NewGridFieldImporter('before');
+				$configs->addComponent($importer);
+
+
+				$loader = $importer->getLoader($grid);
+
+				$importer->transforms = array(
+	    			
+	    			'FirstName' => array(
+	        			'callback' => function($value, $placeholder) {
+	            			//capitalize course codes
+	            			return trim($value);
+	        			}
+	    			),
+
+	    			'Email' => array(
+	        			'callback' => function($value, $placeholder) {
+	            			//capitalize course codes
+	            			return trim($value);
+	        			}
+	    			),
+
+	    			'Surname' => array(
+	        			'callback' => function($value, $placeholder) {
+	            			//capitalize course codes
+	            			return trim($value);
+	        			}
+	    			)
+
+	    			
+    			);
+
+	    			
 				$configs->removeComponentsByType('GridFieldAddNewButton');
 				
 				$configs->addComponent(new GridFieldSelectRecord(), 'GridFieldDataColumns');
